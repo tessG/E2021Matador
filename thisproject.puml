@@ -1,0 +1,28 @@
+@startuml
+
+Main "1" *-- "2...6" BankAccount : has
+
+Main "1" *-- "1" UI : has
+Main : static ArrayList<BankAccount> accounts
+Main : static UI ui
+Main : static main(String[] args)
+Main : static readAccountData()
+Main : static printAccounts()
+Main : static saveGamedata()
+
+BankAccount : BankAccount(String owner, float balance)
+BankAccount : String owner
+BankAccount : float balance
+BankAccount : float[] transactions
+
+
+BankAccount : String toString()
+BankAccount : void withdrawAmount(int amount)
+BankAccount : float getBalance()
+
+UI : void createAccounts()
+UI : void assignPlayer(BankAccount account)
+UI : String getUserInput(String msg)
+@enduml
+
+

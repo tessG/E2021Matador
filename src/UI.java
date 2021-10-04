@@ -2,17 +2,25 @@ import java.util.Scanner;
 
 public class UI {
 
-    static int MAX = 6;
+
 
     /**
      * Starter en dialog med brugeren så denne kan oprette op til 6(MAX) konti
+     * todo: kod denne om sådan at man kan slippe ud af loopet selvom der kun er 3 deltagere
+     * pseudo kode:
+     *  tilføj quit mulighed i besked til brugeren
+     *  før konstruktor kald, tjek om denne blev valgt
+     *  break hvis det er tilfældet
      */
     public void createAccounts() {
-        String choice;
+
         int i = 0;
-        while(i<MAX){
-            String name = getUserInput("Navn? : ");
-            Main.accounts.add(new BankAccount(name,30000));
+        while(i<Main.MAX ){
+            String input = getUserInput("Navn? (eller Q for at quitte) ");
+            if(input.equalsIgnoreCase("Q")){
+               break;
+            }
+            Main.accounts.add(new BankAccount(input, 30000));
             i++;
         }
     }

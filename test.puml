@@ -1,0 +1,12 @@
+@startuml
+Shop "1" *-- "many" Product : has
+Shop "1" *-- "many" Customer : has
+
+Shop : ArrayList<Product> products
+Shop : ArrayList<Customer> customers
+Shop : displayProducts()
+
+Customer : String userName
+Customer : String id
+Customer : toString()
+@enduml
