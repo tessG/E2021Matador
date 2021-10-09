@@ -1,0 +1,54 @@
+@startuml
+object Board
+object Field
+object Property
+object Plot
+object Business
+object ShippingLine
+object Brewery
+object Building
+object House
+object Hotel
+object Start
+object Consequence
+object Prison
+object Visit
+object Bonus
+object Player
+object Account
+object Piece
+object Dice
+object Card
+object Deed
+object Tax
+object Chance
+object Bank
+
+Field <|-- Property
+Field <|-- Start
+Field <|-- Consequence
+Property <|-- Plot
+Property <|-- Business
+Building <|-- House
+Building <|-- Hotel
+Business <|-- Brewery
+Business <|-- ShippingLine
+Consequence <|-- Bonus
+Consequence <|-- Chance
+Consequence <|-- Prison
+Consequence <|-- Tax
+Consequence <|-- Visit
+
+
+Board o-- "40" Field
+Board o-- "2" Dice
+Board o-- "100" Card
+Board o-- "2..6" Piece
+
+Player o-- "1" Piece
+Player o-- "1" Account
+Plot o-- "0..5" Building
+Account o-- "1" Deed
+Property o-- "1" Deed
+
+@enduml

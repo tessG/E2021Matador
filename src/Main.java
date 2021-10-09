@@ -7,41 +7,35 @@ import java.util.Scanner;
 
 public class Main {
    // static BankAccount[] accounts = new BankAccount[3];
-   static ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
+   //static ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
+   static ArrayList<Player> players = new ArrayList<Player>();
    static int MAX = 6;
 
     public static void main(String [] arg){
         //todo: sørg for at der startes en dialog hvis der ikke er noget game data (demonstration af throws på readGame data, indpakke kald i try-catch, i catch startes dialogen)
         try {
-
             readGameData();
-
         }catch(FileNotFoundException e){
             /**
-             * Her har vi gjort klar til at få data fra brugeren i de tilfælde,
-             * hvor der ikke findes noget game data.
              * Instantiering af et UI objekt hvorpå vi kan igangsætte dialoger med brugeren
              */
             System.out.println(e.getMessage());
              UI ui = new UI();
              ui.createAccounts();
             // ui.manageAccount();
-
         }
 
-       saveGameData();
-
-        //todo: indkapsling af dette i en metode, printAccounts(), med et loop der løber så længe der er konti i listen
+        saveGameData();
         printAccounts();
 
-        //
-       //todo implementer en saveGameData();
+
+
     }
 
     private static void saveGameData() {
         String gamedata = "";
 
-        for (BankAccount a : accounts  ) {
+        for (Player a : players) {
             gamedata += a;
         }
 
@@ -55,7 +49,7 @@ public class Main {
     }
 
     private static void printAccounts() {
-        for(BankAccount a: accounts){
+        for(Player a: players){
             System.out.println(a);
         }
     }
@@ -75,8 +69,8 @@ public class Main {
         while(scan.hasNextLine()){
             String [] values = scan.nextLine().split(":");
             float converted_float = Float.parseFloat(values[1]);
-            BankAccount account = new BankAccount(values[0], converted_float);
-            accounts.add(account);
+            Player p = new Player(values[0], converted_float);
+            players.add(p);
         }
     }
 

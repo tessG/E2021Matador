@@ -1,3 +1,1 @@
-Egon : 30000.0
-Bennyu : 30000.0
-Kjeld : 30000.0
+Player@27d6c5e0Player@4f3f5b24Player@15aeb7ab

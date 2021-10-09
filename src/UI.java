@@ -2,8 +2,6 @@ import java.util.Scanner;
 
 public class UI {
 
-
-
     /**
      * Starter en dialog med brugeren så denne kan oprette op til 6(MAX) konti
      * todo: kod denne om sådan at man kan slippe ud af loopet selvom der kun er 3 deltagere
@@ -20,7 +18,7 @@ public class UI {
             if(input.equalsIgnoreCase("Q")){
                break;
             }
-            Main.accounts.add(new BankAccount(input, 30000));
+            Main.players.add(new Player(input, 30000));
             i++;
         }
     }
@@ -38,10 +36,10 @@ public class UI {
     }
 
 
-    public void manageAccount() {
+   /* public void manageAccount() {
         String input = getUserInput("Hvilken konto? :");
         int input_number = Integer.parseInt(input);
-        BankAccount account = Main.accounts.get(input_number);
+        BankAccount account = Main.players.get(input_number);
         input = getUserInput("Beløb? :");
         try{
             float converted_input = Float.parseFloat(input);
@@ -49,5 +47,5 @@ public class UI {
         }catch(NumberFormatException e){
             System.out.println("Det var ikke et tal");
         }
-    }
+    }*/
 }
