@@ -1,20 +1,22 @@
 public class Player {
-    private int id = 0;
-    private static int counter = 0;
-    private String name;
+    String name;
+    int id;
+    int position;
+    BankAccount account;
+    static int counter;
 
-    public Player(String name, float balance){
+    public Player(String name,int balance){
         this.name = name;
-        BankAccount account = new BankAccount(name, balance);
+
         counter++;
-        this.id = counter;
+        this.id=counter;
+        this.account = new BankAccount(name,balance);
     }
-
     @Override
-    public String toString() {
-        return "Player{" +name+
-                "id=" + id +
-                '}';
+    public String toString(){
+        String s;
+        s = name +" : "+account.getBalance()+"\n";
+        return s;
     }
-}
 
+}

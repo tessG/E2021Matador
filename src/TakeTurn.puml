@@ -1,0 +1,19 @@
+@startuml
+control       Main       as Main
+boundary      UI          as UI
+entity        Field       as Field
+entity        FieldSubclass      as Sub
+
+
+Main -> Field : createOption()
+Field --> Main : String optionMsg
+Main -> UI  : displayOption(optionMsg)
+UI --> Main : String response
+Main -> Field  : processResponse(response)
+alt response==Y
+Field -> Sub  : onAccept()
+else response==N
+Field -> Sub : onReject()
+end
+
+@enduml

@@ -1,8 +1,10 @@
 @startuml
 
 Main "1" *-- "2...6" BankAccount : has
-
 Main "1" *-- "1" UI : has
+Player *-- BankAccount : has
+Field <|-- Consequence
+Field <|-- Property
 Main : static ArrayList<BankAccount> accounts
 Main : static UI ui
 Main : static final int MAX
@@ -10,6 +12,7 @@ Main : static main(String[] args)
 Main : static readAccountData()
 Main : static printAccounts()
 Main : static saveGamedata()
+Main : static doTurn()
 
 BankAccount : BankAccount(String owner, float balance)
 BankAccount : String owner
@@ -22,6 +25,27 @@ BankAccount : float getBalance()
 
 UI : void createAccounts()
 UI : String getUserInput(String msg)
+
+Field : - String label
+Field : - int id
+Field : - int cost
+Field : - int income
+Field : + String createOption()
+Field : + void processResponse()
+
+Property : int seriesID
+Property : onAccept()
+Property : onReject()
+
+Consequence : onAccept()
+Consequence : onReject()
+
+Player : BankAccount account
+Player : handleMoney()
+Player : updatePosition()
+
+
+
 @enduml
 
 

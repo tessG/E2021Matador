@@ -18,6 +18,7 @@ public class UI {
             if(input.equalsIgnoreCase("Q")){
                break;
             }
+
             Main.players.add(new Player(input, 30000));
             i++;
         }

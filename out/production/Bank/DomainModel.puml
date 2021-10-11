@@ -21,7 +21,7 @@ object Dice
 object Card
 object Deed
 object Tax
-object Event
+object Chance
 object Bank
 
 Field <|-- Property
@@ -34,7 +34,7 @@ Building <|-- Hotel
 Business <|-- Brewery
 Business <|-- ShippingLine
 Consequence <|-- Bonus
-Consequence <|-- Event
+Consequence <|-- Chance
 Consequence <|-- Prison
 Consequence <|-- Tax
 Consequence <|-- Visit

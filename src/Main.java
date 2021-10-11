@@ -7,12 +7,14 @@ import java.util.Scanner;
 
 public class Main {
    // static BankAccount[] accounts = new BankAccount[3];
-   //static ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
-   static ArrayList<Player> players = new ArrayList<Player>();
+   static ArrayList<Player> players = new ArrayList();
+
    static int MAX = 6;
 
     public static void main(String [] arg){
         //todo: sørg for at der startes en dialog hvis der ikke er noget game data (demonstration af throws på readGame data, indpakke kald i try-catch, i catch startes dialogen)
+        UI ui = new UI();
+
         try {
             readGameData();
         }catch(FileNotFoundException e){
@@ -20,16 +22,13 @@ public class Main {
              * Instantiering af et UI objekt hvorpå vi kan igangsætte dialoger med brugeren
              */
             System.out.println(e.getMessage());
-             UI ui = new UI();
+
              ui.createAccounts();
             // ui.manageAccount();
         }
 
         saveGameData();
         printAccounts();
-
-
-
     }
 
     private static void saveGameData() {
@@ -68,8 +67,8 @@ public class Main {
 
         while(scan.hasNextLine()){
             String [] values = scan.nextLine().split(":");
-            float converted_float = Float.parseFloat(values[1]);
-            Player p = new Player(values[0], converted_float);
+            int converted_int = Integer.parseInt(values[1]);
+            Player p = new Player(values[0], converted_int);
             players.add(p);
         }
     }
