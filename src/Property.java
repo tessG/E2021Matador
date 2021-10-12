@@ -22,4 +22,7 @@ public class Property extends Field{
         s+=  "En del af serie: "+ seriesID;
         return s;
     }
+    public int getSeriesID(){
+        return seriesID;
+    }
 }
