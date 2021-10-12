@@ -6,30 +6,40 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-   // static BankAccount[] accounts = new BankAccount[3];
    static ArrayList<Player> players = new ArrayList();
-
    static int MAX = 6;
 
     public static void main(String [] arg){
-        //todo: sørg for at der startes en dialog hvis der ikke er noget game data (demonstration af throws på readGame data, indpakke kald i try-catch, i catch startes dialogen)
+
         UI ui = new UI();
 
         try {
             readGameData();
         }catch(FileNotFoundException e){
-            /**
-             * Instantiering af et UI objekt hvorpå vi kan igangsætte dialoger med brugeren
-             */
-            System.out.println(e.getMessage());
 
+            System.out.println(e.getMessage());
              ui.createAccounts();
             // ui.manageAccount();
         }
+        Board board = new Board();
+
+        //todo: call gameloop(w. while)
+        // - in each loop run use case TakeTurn on behalf of currentPlayer
+        // After each turn, ask if player wants to continue or end game
 
         saveGameData();
         printAccounts();
+
     }
+
+    /**
+     *
+     * Denne metode gemmer sessionens tilstand,
+     * instantier en gamedata tekst-streng (String)
+     * loop igennem accounts, og for hver linie tilføj data i formen "ejer:balance" til strengen
+     * instantier FileWriter og kald dens write med den opbyggede streng som argument
+     *
+     */
 
     private static void saveGameData() {
         String gamedata = "";
@@ -54,10 +64,11 @@ public class Main {
     }
 
     /**
-     * Indlæser konto data og danner konto objekter på baggrund heraf
-     * objekterne gemmes herefter i denne klasses ArrayList<BankAccount>
-     *  TODO: tilføj throws FileNotFoundException til metodesignaturen da vi hellere vil fange fejl oppe i main
-     *   Hvis der er fejl i læsnign af filen vil vi igangsætte en dialog til manuel indtastning derfra
+     * Indlæser gamedata og danner spillerinstanser på baggrund af data
+     * objekterne gemmes herefter i denne klasses ArrayList<Players>
+     *
+     *   'throws FileNotFoundException' i metodesignaturen fordi vi hellere vil fange indlæsningsfejl oppe i main
+     *   - i de tilfælde kan vi i stedet igangsætte en dialog til manuel indtastning af spiller data
      */
     private static void readGameData() throws FileNotFoundException{
         File file = new File("src/data.txt");
@@ -100,24 +111,3 @@ public class Main {
 
 
 
-
-/**
- * Denne metode gemmer sessionens tilstand, dvs listen af konti i formen ejernavn:saldo
- * instantier en gamedata string til
- * loop igennem accounts, og for hver linie tilføj data i formen "ejer:balance" til strengen
- * instantier FileWriter
- */
-  /*  public static void saveGameData(){
-        String gamedata = "";
-        for (BankAccount a:accounts) {
-            gamedata = gamedata + a.getOwner()+":"+a.getBalance()+"\n";
-        }
-        try{
-            FileWriter writer = new FileWriter("src/_data.txt");
-            writer.write(gamedata);
-            writer.close();
-            System.out.println("wrote game data to file");
-        }catch (IOException e){
-            System.out.println(e.getCause());
-        }
-    }*/

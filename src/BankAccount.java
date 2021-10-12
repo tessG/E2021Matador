@@ -1,5 +1,5 @@
 public class BankAccount{
-    private float balance = 30000;
+    private int balance = 30000;
     private String owner;
     private int stalkingCounter = 0;
 
@@ -7,7 +7,7 @@ public class BankAccount{
      * Konstruktor for klassen BankAccount
      * @param owner
      */
-    public BankAccount(String owner, float balance){
+    public BankAccount(String owner, int balance){
        this.owner = owner;
        this.balance = balance;
     }

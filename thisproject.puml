@@ -5,6 +5,8 @@ Main "1" *-- "1" UI : has
 Player *-- BankAccount : has
 Field <|-- Consequence
 Field <|-- Property
+Main *-- Board : has
+Board *-- Field : has
 Main : static ArrayList<BankAccount> accounts
 Main : static UI ui
 Main : static final int MAX
@@ -13,6 +15,9 @@ Main : static readAccountData()
 Main : static printAccounts()
 Main : static saveGamedata()
 Main : static doTurn()
+
+Board : ArrayList<Field> fields
+Board : Dice dice
 
 BankAccount : BankAccount(String owner, float balance)
 BankAccount : String owner
@@ -32,17 +37,24 @@ Field : - int cost
 Field : - int income
 Field : + String createOption()
 Field : + void processResponse()
+Field : + String toString()
 
 Property : int seriesID
 Property : onAccept()
 Property : onReject()
+Property : + String toString()
+
+
 
 Consequence : onAccept()
 Consequence : onReject()
+Consequence : + String toString()
 
 Player : BankAccount account
+Player : Player(String name, int balance)
 Player : handleMoney()
 Player : updatePosition()
+
 
 
 

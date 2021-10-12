@@ -21,7 +21,7 @@ u --> (UCA1)
 (UCA2) --> (UC1) : proceeds
 
 (UC1) --> (UC2) : invokes
-
+(UC1) --> (UC8) : proceeds
 
 (UC2) --> (UC4)
 (UC2) --> (UC5)
@@ -31,6 +31,7 @@ u --> (UCA1)
 
 (UC6) --> (UC1)
 (UC6) --> (UC7)
-(UC1) --> (UC8) : proceeds
+(UC7) --> (UC1)
+
 
 @enduml
