@@ -15,7 +15,7 @@ public class Player {
     @Override
     public String toString(){
         String s;
-        s = name +" : "+account.getBalance()+"\n";
+        s = name +":"+account.getBalance()+"\n";
         return s;
     }
 

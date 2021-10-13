@@ -13,6 +13,7 @@ public class Main {
 
         UI ui = new UI();
 
+        //Få noget spiller data ind
         try {
             readGameData();
         }catch(FileNotFoundException e){
@@ -21,14 +22,20 @@ public class Main {
              ui.createAccounts();
             // ui.manageAccount();
         }
+        printAccounts();
+
+        //Byg spillepladen
         Board board = new Board();
 
         //todo: call gameloop(w. while)
         // - in each loop run use case TakeTurn on behalf of currentPlayer
         // After each turn, ask if player wants to continue or end game
 
+
+
+
         saveGameData();
-        printAccounts();
+
 
     }
 

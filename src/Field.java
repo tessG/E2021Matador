@@ -13,7 +13,7 @@ public class Field {
         this.id = id;
     }
 
-    //Vil du købe grunden
+    //fx. "Vil du købe grunden"
     public String createOption(String s){
 
         return s;
