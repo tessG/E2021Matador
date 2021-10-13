@@ -25,7 +25,8 @@ public class Main {
         printAccounts();
 
         //Byg spillepladen
-        Board board = new Board();
+        String [] data = readFileData();
+        Board board = new Board(data);
 
         //todo: call gameloop(w. while)
         // - in each loop run use case TakeTurn on behalf of currentPlayer
@@ -37,6 +38,26 @@ public class Main {
         saveGameData();
 
 
+    }
+
+    private static String[] readFileData() {
+        String[] data = new String[40];
+        File file = new File("src/fields.txt");
+        String s;
+        int i = 0;
+        try {
+            Scanner scan = new Scanner(file);
+            scan.nextLine();//ignorerer headeren
+
+            while(scan.hasNextLine()){
+                 s = scan.nextLine();
+                 data[i] = s;
+                 i++;
+            }
+        }catch(FileNotFoundException e){
+            System.out.println(e.getCause());
+        }
+        return data;
     }
 
     /**
