@@ -27,11 +27,8 @@ public class Main {
         Board board = new Board(data);
 
         //todo: call gameloop(w. while) where currentPlayer is found
-        // - in each loop, run the use case 'TakeTurn' on behalf of currentPlayer
+        // - in each loop, run the use case 'TakeTurn on behalf of currentPlayer
         // After each turn, ask if player wants to continue or end game
-
-
-
 
         saveGameData();
 
