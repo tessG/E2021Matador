@@ -5,9 +5,9 @@ entity        Field       as Field
 entity        FieldSubclass      as Sub
 
 
-Main -> Field : createOption()
-Field --> Main : String optionMsg
-Main -> UI  : displayOption(optionMsg)
+Main -> Field : onLand()
+Field --> Main : String message
+Main -> UI  : displayOption(message)
 UI --> Main : String response
 Main -> Field  : processResponse(response)
 alt response==Y

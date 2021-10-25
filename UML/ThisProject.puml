@@ -3,10 +3,14 @@
 Main "1" *-- "2...6" BankAccount : has
 Main "1" *-- "1" UI : has
 Player *-- BankAccount : has
-Field <|-- Consequence
-Field <|-- Property
+Field <|-- Consequence : is-a
+Field <|-- Property : is-a
 Main *-- Board : has
 Board *-- Field : has
+Consequence <|-- Tax : is-a
+Consequence <|-- Start : is-a
+Property <|-- Plot : is-a
+
 Main : static ArrayList<BankAccount> accounts
 Main : static UI ui
 Main : static final int MAX

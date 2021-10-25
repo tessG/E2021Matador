@@ -27,10 +27,12 @@ public class Board {
                 field = new Plot(id, label, cost, income,seriesID);
                 break;
             case "Brewery":
-            case "ShippingLine":
-                //todo: create Business class
-                field = new Business(id, label, cost, income,seriesID);
+                field = new Brewery(id, label, cost, income,seriesID);
                 break;
+            case "ShippingLine":
+                field = new ShippingLine(id, label, cost, income,seriesID);
+                break;
+
             case "Chance":
                 //todo: create Chance class
                 field = new Chance(id, label);
@@ -40,15 +42,15 @@ public class Board {
                 break;
             case "Jail":
                 //todo: create Jail class
-                field = new Jail(id, label);
+                field = new Jail(id, label, cost);
                 break;
             case "Visit":
                 //todo: create Visit class
-                field = new Visit(id, label);
+                field = new Consequence(id, label,0,0);
                 break;
             case "Parkering":
                 //todo: create Bonus (or Parking) class
-                field = new Bonus(id, label,0, cost);
+               // field = new Bonus(id, label,0, cost);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + fieldType);

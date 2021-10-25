@@ -1,0 +1,22 @@
+@startuml
+control       Main       as Main
+
+entity        Board       as Board
+entity        Field       as Field
+entity        "Start extends Field"      as Start
+entity        "Plot extends Field"     as Plot
+entity        "Chance extends Field"     as Chance
+
+Main -> Main : String [] data = readFieldData()
+Main --> Board : new Board(data)
+Board -> Board  : setFields(data)
+alt fieldType=="Start"
+Board --> Start: new Field(id, label, income)
+else response=="Plot"
+Board --> Plot: new Field(id, label, cost, income, seriesID)
+else response=="Chance"
+Board --> Plot: new Field(id, label)
+
+end
+
+@enduml

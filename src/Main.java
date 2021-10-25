@@ -13,14 +13,12 @@ public class Main {
 
         UI ui = new UI();
 
-        //Få noget spiller data ind
+        //Få noget spiller data ind enten ved at læse det eller ved at starte en brugerdialog
         try {
             readGameData();
         }catch(FileNotFoundException e){
-
             System.out.println(e.getMessage());
-             ui.createAccounts();
-            // ui.manageAccount();
+            ui.createAccounts();
         }
         printAccounts();
 
@@ -28,8 +26,8 @@ public class Main {
         String [] data = readFileData();
         Board board = new Board(data);
 
-        //todo: call gameloop(w. while)
-        // - in each loop run use case TakeTurn on behalf of currentPlayer
+        //todo: call gameloop(w. while) where currentPlayer is found
+        // - in each loop, run the use case 'TakeTurn' on behalf of currentPlayer
         // After each turn, ask if player wants to continue or end game
 
 
