@@ -41,23 +41,23 @@ public class Main {
     }
 
     private static void takeTurn() {
-       //slå med terninger (DICE)
-        int diceValue = 4;//board.dice.throwDice();
-        // opdatere spillers position (PLAYER)
+        //slå med terninger (DICE)
+        int diceValue = board.dice.throwDice();
+
+        // opdatee spillers position (PLAYER)
         int position = currentPlayer.updatePosition(diceValue);
+
         // Få fat i det felt spilleren er landet på (BOARD)
         Field f = board.getField(position);
 
-
         // hent besked hos det felt
         String message = f.onLand(); //polymorfisk kald
-        String response = ui.startDialog(message);
-
-        f.processResponse(response);
 
         // startDialog(UI) med den besked felt har returneret returnerer det brugeren svarer
+        String response = ui.startDialog(message);
 
-
+        //lad feltet tage sig af hvad der skal gøres
+        f.processResponse(response);
 
     }
 
