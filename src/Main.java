@@ -8,11 +8,13 @@ import java.util.Scanner;
 public class Main {
    static ArrayList<Player> players = new ArrayList();
    static int MAX = 6;
+   private static Board board;
+   private static UI ui;
+   private static Player currentPlayer;
 
     public static void main(String [] arg){
 
-        UI ui = new UI();
-
+         ui = new UI();
         //Få noget spiller data ind enten ved at læse det eller ved at starte en brugerdialog
         try {
             readGameData();
@@ -24,13 +26,35 @@ public class Main {
 
         //Byg spillepladen
         String [] data = readFileData();
-        Board board = new Board(data);
+        board = new Board(data);
 
-        //todo: call gameloop(w. while) where currentPlayer is found
-        // - in each loop, run the use case 'TakeTurn on behalf of currentPlayer
-        // After each turn, ask if player wants to continue or end game
 
+        runLoop();
         saveGameData();
+    }
+
+    private static void runLoop(){
+        //todo:while - in each loop, run the use case 'TakeTurn on behalf of currentPlayer
+        // After each turn, ask if player wants to continue or end game
+        currentPlayer = players.get(0);
+        takeTurn();
+    }
+
+    private static void takeTurn() {
+       //slå med terninger (DICE)
+        int diceValue = board.dice.throwDice();
+        // opdatere spillers position (PLAYER)
+        int position = currentPlayer.updatePosition(diceValue);
+        // Få fat i det felt spilleren er landet på (BOARD)
+        Field f = board.getField(position);
+
+
+        // hent besked hos det felt
+        String message = f.onLand();
+        ui.startDialog(message);
+
+        // startDialog(UI) med den besked felt har returneret returnerer det brugeren svarer
+
 
 
     }

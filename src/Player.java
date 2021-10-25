@@ -12,6 +12,11 @@ public class Player {
         this.id=counter;
         this.account = new BankAccount(name,balance);
     }
+    public int updatePosition(int diceRoll){
+        position += diceRoll;
+        return position;
+    }
+
     @Override
     public String toString(){
         String s;

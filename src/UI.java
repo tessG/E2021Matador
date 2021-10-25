@@ -36,7 +36,15 @@ public class UI {
         return input;
     }
 
+    public String startDialog(String msg){
+        String input = getUserInput(msg);
 
+        if(!input.equalsIgnoreCase("y") || !input.equalsIgnoreCase("n" )){
+            System.out.println("ugyldigt input");
+            startDialog(msg);
+        }
+        return input;
+    }
    /* public void manageAccount() {
         String input = getUserInput("Hvilken konto? :");
         int input_number = Integer.parseInt(input);

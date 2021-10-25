@@ -1,5 +1,6 @@
 public class Board {
     Field[] fields = new Field[40];
+    Dice dice = new Dice();
 
     public Board(String[] data){
         setFields(data);
@@ -21,7 +22,6 @@ public class Board {
 
         switch (fieldType) {
             case "Start":
-                System.out.println(id);
                 field = new Start(id, label, income);
                 break;
             case "Plot":

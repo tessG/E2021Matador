@@ -13,10 +13,11 @@ public class Field {
         this.id = id;
     }
 
-    //fx. "Vil du købe grunden"
-    public String createOption(String s){
+    //fx. "Du er landet på x"
 
-        return s;
+    public String onLand(){
+        String message = "Du er landet på "+label;
+        return message;
     }
 
     //Er der blevet sagt ja eller nej

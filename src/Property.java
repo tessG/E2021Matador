@@ -8,6 +8,14 @@ public class Property extends Field{
         this.seriesID = seriesID;
     }
 
+    @Override
+    public String onLand(){
+        String s = super.onLand();
+        return s;
+    }
+
+
+
     public void onAccept(){
 
     }
