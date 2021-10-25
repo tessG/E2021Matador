@@ -1,4 +1,4 @@
-public class Field {
+abstract public class Field {
     //todo: information hiding
 
     int cost;
@@ -21,8 +21,16 @@ public class Field {
     }
 
     //Er der blevet sagt ja eller nej
-    public void processResponse(){
+    public void processResponse(String response){
+
+        if(response.equalsIgnoreCase("Y")){
+            this.onAccept();
+        }else{
+           // this.onReject();
+        }
     }
+
+    abstract void onAccept();
 
     @Override
     public String toString(){

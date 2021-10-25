@@ -10,7 +10,7 @@ public class Main {
    static int MAX = 6;
    private static Board board;
    private static UI ui;
-   private static Player currentPlayer;
+   public static Player currentPlayer;
 
     public static void main(String [] arg){
 
@@ -42,7 +42,7 @@ public class Main {
 
     private static void takeTurn() {
        //slå med terninger (DICE)
-        int diceValue = board.dice.throwDice();
+        int diceValue = 4;//board.dice.throwDice();
         // opdatere spillers position (PLAYER)
         int position = currentPlayer.updatePosition(diceValue);
         // Få fat i det felt spilleren er landet på (BOARD)
@@ -50,8 +50,10 @@ public class Main {
 
 
         // hent besked hos det felt
-        String message = f.onLand();
-        ui.startDialog(message);
+        String message = f.onLand(); //polymorfisk kald
+        String response = ui.startDialog(message);
+
+        f.processResponse(response);
 
         // startDialog(UI) med den besked felt har returneret returnerer det brugeren svarer
 

@@ -39,7 +39,7 @@ public class UI {
     public String startDialog(String msg){
         String input = getUserInput(msg);
 
-        if(!input.equalsIgnoreCase("y") || !input.equalsIgnoreCase("n" )){
+        if(!input.equalsIgnoreCase("y") && !input.equalsIgnoreCase("n" )){
             System.out.println("ugyldigt input");
             startDialog(msg);
         }
