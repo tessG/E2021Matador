@@ -1,3 +1,3 @@
-Egon      :30000
-benny      :2
-Kjeld      :40000
+Egon       :30000
+benny      :30000
+Kjeld      :30000

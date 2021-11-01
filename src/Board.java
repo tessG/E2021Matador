@@ -25,7 +25,6 @@ public class Board {
                 field = new Start(id, label, income);
                 break;
             case "Plot":
-                //todo: create Plot class
                 field = new Plot(id, label, cost, income,seriesID);
                 break;
             case "Brewery":
@@ -35,22 +34,18 @@ public class Board {
                 field = new ShippingLine(id, label, cost, income,seriesID);
                 break;
             case "Chance":
-                //todo: create Chance class
                 field = new Chance(id, label);
                 break;
             case "Tax":
                 field = new Tax(id, label, cost);
                 break;
             case "Prison":
-                //todo: create Jail class
                 field = new Prison(id, label, cost);
                 break;
             case "Visit":
-                //todo: create Visit class
                 field = new Consequence(id, label,0,0);
                 break;
             case "Bonus":
-                //todo: create Bonus (or Parking) class
                // field = new Bonus(id, label,0, cost);
                 break;
             default:

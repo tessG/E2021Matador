@@ -7,11 +7,11 @@ public class Player {
 
     public Player(String name,int balance){
         this.name = name;
-
         counter++;
         this.id=counter;
         this.account = new BankAccount(name,balance);
     }
+
     public int updatePosition(int diceRoll){
         position += diceRoll;
         return position;

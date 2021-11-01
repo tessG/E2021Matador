@@ -1,5 +1,6 @@
 @startuml
-
+abstract class Field
+abstract class Property
 Main "1" *-- "2...6" BankAccount : has
 Main "1" *-- "1" UI : has
 Player *-- BankAccount : has
@@ -10,6 +11,7 @@ Board *-- Field : has
 Consequence <|-- Tax : is-a
 Consequence <|-- Start : is-a
 Property <|-- Plot : is-a
+Property <|-- Business : is-a
 
 Main : static ArrayList<BankAccount> accounts
 Main : static UI ui
@@ -39,11 +41,12 @@ Field : - String label
 Field : - int id
 Field : - int cost
 Field : - int income
-Field : + String createOption()
+Field : + String onLand()
 Field : + void processResponse()
 Field : + String toString()
 
 Property : int seriesID
+Property : String onLand()
 Property : onAccept()
 Property : onReject()
 Property : + String toString()

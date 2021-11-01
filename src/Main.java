@@ -28,7 +28,6 @@ public class Main {
         String [] data = readFileData();
         board = new Board(data);
 
-
         runLoop();
         saveGameData();
     }
@@ -44,7 +43,7 @@ public class Main {
         //slå med terninger (DICE)
         int diceValue = board.dice.throwDice();
 
-        // opdatee spillers position (PLAYER)
+        // opdater spillers position (PLAYER)
         int position = currentPlayer.updatePosition(diceValue);
 
         // Få fat i det felt spilleren er landet på (BOARD)
@@ -54,6 +53,7 @@ public class Main {
         String message = f.onLand(); //polymorfisk kald
 
         // startDialog(UI) med den besked felt har returneret returnerer det brugeren svarer
+
         String response = ui.startDialog(message);
 
         //lad feltet tage sig af hvad der skal gøres
@@ -61,7 +61,7 @@ public class Main {
 
     }
 
-    private static String[] readFileData() {
+    public static String[] readFileData() {
         String[] data = new String[40];
         File file = new File("src/fields.txt");
         String s;
@@ -75,6 +75,7 @@ public class Main {
                  data[i] = s;
                  i++;
             }
+
         }catch(FileNotFoundException e){
             System.out.println(e.getCause());
         }
@@ -119,7 +120,7 @@ public class Main {
      *   'throws FileNotFoundException' i metodesignaturen fordi vi hellere vil fange indlæsningsfejl oppe i main
      *   - i de tilfælde kan vi i stedet igangsætte en dialog til manuel indtastning af spiller data
      */
-    private static void readGameData() throws FileNotFoundException{
+    public static void readGameData() throws FileNotFoundException{
         File file = new File("src/data.txt");
         Scanner scan = null;
 

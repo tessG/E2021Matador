@@ -22,7 +22,6 @@ public class Property extends Field{
                 //todo: sæt timer
                 currentOption = "pay";
             }
-
         }else{
            s+="Vil du købe grunden?";
             currentOption = "buy";
@@ -34,11 +33,22 @@ public class Property extends Field{
     @Override
     public void onAccept(){
       if(currentOption.equals("buy")){
-          //Todo: træk penge fra spillerens konto og gi til banken
+
           //sætte this.owner til spiller
           System.out.println("Du er nu ejer af " + label);
+           Main.currentPlayer.account.doTransaction(-this.cost);
+           this.owner = Main.currentPlayer;
+
+          //todo:
+          // træk penge fra spillerens konto (Main.currentPlayer.account)
+          // sæt feltets ejer til at pege på denne spiller
+          //test at currentPlayers konto nu vise den rigtige saldo
 
       }
+      //todo: fang når currentOption er "pay". Sørg for at huslejen (gemt i feltets income attribut) bliver trukket fra spillerens konto og sat ind på ejerens konto
+        // todo: test
+
+
     }
 
 
