@@ -22,10 +22,18 @@ public class PropertyTest {
         Field f = board.getField(position);
         f.onLand();
         f.processResponse("Y");
-        assertEquals(200,Main.currentPlayer.account.getBalance());
+        assertEquals(28800,Main.currentPlayer.account.getBalance());
 
-        Main.currentPlayer = player1;
+        Main.currentPlayer = player2;
         position = Main.currentPlayer.updatePosition(4);
+        f =  board.getField(position);
+        f.onLand();
+        assertEquals("pay",  ((Property) f).currentOption);
+        f.processResponse("Y");
+        assertEquals(29950,player2.account.getBalance());
+        assertEquals(28850,player1.account.getBalance());
+
+
 
     }
 }

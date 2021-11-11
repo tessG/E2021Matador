@@ -2,7 +2,7 @@ public class Property extends Field{
     //todo: information hiding
     private Player owner;
     private int seriesID;
-    private String currentOption;
+    public String currentOption;
 
     public Property(int id, String label, int cost, int income, int seriesID) {
         super(id, label, cost, income);
@@ -18,8 +18,7 @@ public class Property extends Field{
                s+="Vil du bygge?";
                currentOption = "build";
             }else{
-                s+= "Du skal betale husleje til "+this.owner;
-                //todo: sæt timer
+                s+="Du skal betale husleje til "+this.owner;
                 currentOption = "pay";
             }
         }else{
@@ -35,16 +34,21 @@ public class Property extends Field{
       if(currentOption.equals("buy")){
 
           //sætte this.owner til spiller
-          System.out.println("Du er nu ejer af " + label);
+           System.out.println("Du er nu ejer af " + label);
            Main.currentPlayer.account.doTransaction(-this.cost);
            this.owner = Main.currentPlayer;
 
-          //todo:
-          // træk penge fra spillerens konto (Main.currentPlayer.account)
-          // sæt feltets ejer til at pege på denne spiller
-          //test at currentPlayers konto nu vise den rigtige saldo
+
+
+      } else if (currentOption.equals("pay")){
+
+          System.out.println("Du har nu betalt " + this.income+ "i husleje");
+          Main.currentPlayer.account.doTransaction(-this.income);
+          this.owner.account.doTransaction(this.income);
+
 
       }
+
       //todo: fang når currentOption er "pay". Sørg for at huslejen (gemt i feltets income attribut) bliver trukket fra spillerens konto og sat ind på ejerens konto
         // todo: test
 

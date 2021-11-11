@@ -1,0 +1,123 @@
+@startuml
+'https://plantuml.com/class-diagram
+class Main
+ {
+ }
+
+class Team {
+static ArrayList<Player> players
+
+final int teamID
+
+String teamName
+
+int points
+int gamesPlayed
+int goalsScored
+int goalsConceded
+
+}
+
+class Player {
+
+final int playerID
+
+String name
+String schoolClass
+String mail
+String phoneNumber
+
+}
+
+class KnockoutPhase extends Tournament{
+
+
+}
+
+'class GroupPhase extends Tournament {
+
+'ArrayList<Team> groups
+'ArrayList<Match> matches
+
+'}
+
+
+
+class Match {
+
+final int matchID
+
+int team1Goals
+int team2Goals
+
+Team team1
+Team team2
+
+DateTime date
+
+}
+
+class TournamentOrganizer {
+showMenu()
+setTournamentRules()
+
+viewMatchProgramme()
+viewTable()
+viewTeams()
+
+}
+
+class Tournament {
+
+static ArrayList<Match> matches
+static ArrayList<Team> teams
+
+KnockoutPhase knockoutPhase
+
+addTeam()
+addMatch()
+removeMatch()
+editMatch()
+'addMatchToGroup()
+addMatchToKnockoutPhase()
+saveKnockoutBracket()
+getWinner()
+saveToFile()
+
+'addMatchToGroup()
+'randomizeGroups()
+'addTeamToGroup()
+'saveGroup()
+}
+
+class User {
+
+showUserMenu()
+viewTable()
+viewTeams()
+viewMatchProgramme()
+
+}
+
+'class Compare implements Comparator{
+
+'int goalDifference
+
+'sortTeams()
+
+'}
+
+Player --* Team
+'GroupPhase --* Match
+'GroupPhase --* Team
+Tournament*-- Match
+Tournament *-- Team
+Main *-- TournamentOrganizer
+Main *-- User
+
+'Tournament --* Team
+'Tournament *-- Compare
+'Tournament --* Match
+
+TournamentOrganizer *-- KnockoutPhase
+@enduml
