@@ -1,40 +1,35 @@
 public class BankAccount{
     private int balance = 30000;
-    private String owner;
+
     private int stalkingCounter = 0;
 
     /**
      * Konstruktor for klassen BankAccount
-     * @param owner
+     *
      */
-    public BankAccount(String owner, int balance){
-       this.owner = owner;
+    public BankAccount(int balance){
+
        this.balance = balance;
     }
 
-    /**
-     * Indsætter eller trækker beløb fra kontoen
-     * Hvis man vil trække et beløb kaldes beløbet med et negativt tal, da +- som bekendt bliver til minus.
-     * @param amount
-     */
-    public void doTransaction(float amount){
-        this.balance += amount; // same as balance = balance+ amount;
+    public boolean doTransaction(int amount){
+        if (sufficientFunds(amount)) {
+            this.balance += amount; // same as balance = balance+ amount;
+            return true;
+        }
+        //player dies
+        return false;
     }
-    /**
-     * Alle objekter har en toString metode. Det er den System.out.print kalder når du skriver sådan her: System.out.print(mitobjekt)
-     * Resultatet ser ud i stil med dette her: BankAccount@6d311334
-     *
-     * Hvis du vil have mere kontrol over hvordan instanser af dine egne klasser skal printes ud, skal du "OVERRIDE" (overskrive) toString
-     * - og det ser sådan her ud:
-     */
 
-    @Override
-    public String toString(){
-        String s;
-        s = owner +" : "+balance+"\n";
-      //  s+= "Antal gange"+owner+"'s saldo er blevet tjekket: "+stalkingCounter;
-        return s;
+    // Check if player has enough money on their account for the transaction with given amount
+    public boolean sufficientFunds(int amount) {
+        if (getBalance() + amount < 0) {
+            System.out.println("Player does not have enough money");
+            return false;
+        }
+        return true;
     }
+
 
 
     public int getBalance() {
@@ -44,7 +39,5 @@ public class BankAccount{
         return balance;
     }
 
-    public String getOwner() {
-        return owner;
-    }
+
 }

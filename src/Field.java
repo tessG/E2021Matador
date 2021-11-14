@@ -1,10 +1,10 @@
 abstract public class Field {
     //todo: information hiding
-
     int cost;
     int income;
     String label;
     int id;
+    public String currentOption;
 
     public Field(int id, String label, int cost, int income){
         this.cost = cost;
@@ -16,24 +16,28 @@ abstract public class Field {
     //fx. "Du er landet på x"
 
     public String onLand(){
-        String message = "Du er landet på "+label;
+        String message = "Du er landet på "+label+"\n";
         return message;
     }
 
     //Er der blevet sagt ja eller nej
-    public void processResponse(String response){
-
+    public String processResponse(String response){
+       String message="";
         if(response.equalsIgnoreCase("Y")){
-            this.onAccept();
+            message = this.onAccept();
         }else{
-           // this.onReject();
+            message = this.onReject();
         }
+        return message;
     }
 
-    abstract void onAccept();
-
+    abstract protected String onAccept();
+    abstract protected String onReject();
     @Override
     public String toString(){
         return id+": "+label;
+    }
+    public int getCost() {
+        return cost;
     }
 }

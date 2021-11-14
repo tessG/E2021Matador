@@ -5,16 +5,22 @@ public class Consequence extends Field {
         super(id, label, cost, income);
     }
     //todo: information hiding
-    public void onAccept(){
+    @Override
+    public String onLand(){
+        currentOption = null;
+        String msg= super.onLand();
+        return msg+ "Træk et kort (endnu ikke implementeret). Tast Y";
     }
 
-    public void onReject(){
+
+    @Override
+    protected String onAccept() {
+       return "kort trukket (endnu ikke implementeret)";
     }
 
     @Override
-    public String toString() {
-        String s = super.toString();
-        s+=" CONSEQUENCE";
-        return s;
+    protected String onReject() {
+        return null;
     }
+
 }

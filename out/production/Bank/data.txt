@@ -1,3 +1,4 @@
-Egon       :28800
-benny      :30000
-Kjeld      :30000
+name, balance, position, isNext
+Egon,30000,1,false
+Benny,30000,1,true
+Kjeld,30000,1,false

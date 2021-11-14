@@ -10,7 +10,7 @@ public class PropertyTest {
     @Before
     public void setUp() throws Exception {
        // Main.readGameData();
-        String [] data = Main.readFileData();
+        String [] data = Main.readFieldData();
         board = new Board(data);
 
     }

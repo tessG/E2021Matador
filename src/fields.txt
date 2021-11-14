@@ -1,9 +1,9 @@
-ID, FieldType, Label, Cost, Income, SeriesID
+ID, fieldType, label, cost, income, seriesID
 1, Start, Start, 0, 0, 0 
 2, Plot, Rødovrevej, 1200, 50, 1
 3, Chance, Prøv Lykken, 0, 0, 0
 4, Plot, Hvidovrevej, 1200, 50, 1 
-5, Tax, IndkomstSkat, 0, 0, 0
+5, Tax, IndkomstSkat, 4000, 0, 0
 6, ShippingLine, Scandlines, 4000, 500, 2 
 7, Plot, Roskildevej, 2000, 100, 3
 8, Chance, Prøv Lykken, 0, 0, 0

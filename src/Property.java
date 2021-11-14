@@ -2,7 +2,7 @@ public class Property extends Field{
     //todo: information hiding
     private Player owner;
     private int seriesID;
-    public String currentOption;
+
 
     public Property(int id, String label, int cost, int income, int seriesID) {
         super(id, label, cost, income);
@@ -22,7 +22,7 @@ public class Property extends Field{
                 currentOption = "pay";
             }
         }else{
-           s+="Vil du købe grunden?";
+           s+="Vil du købe grunden? Y/N:";
             currentOption = "buy";
         }
         return s;
@@ -30,32 +30,35 @@ public class Property extends Field{
 
 
     @Override
-    public void onAccept(){
+    public String onAccept(){
+        String msg="";
       if(currentOption.equals("buy")){
 
           //sætte this.owner til spiller
-           System.out.println("Du er nu ejer af " + label);
+
            Main.currentPlayer.account.doTransaction(-this.cost);
            this.owner = Main.currentPlayer;
 
-
+            msg= "Du er nu ejer af " + label+"\n";
 
       } else if (currentOption.equals("pay")){
 
-          System.out.println("Du har nu betalt " + this.income+ "i husleje");
+          msg ="Du har nu betalt " + this.income +" til "+this.owner;
           Main.currentPlayer.account.doTransaction(-this.income);
           this.owner.account.doTransaction(this.income);
 
 
       }
-
+        return msg;
       //todo: fang når currentOption er "pay". Sørg for at huslejen (gemt i feltets income attribut) bliver trukket fra spillerens konto og sat ind på ejerens konto
         // todo: test
 
 
     }
 
-
+    protected String onReject(){
+        return "";
+    }
 
     @Override
     public String toString() {

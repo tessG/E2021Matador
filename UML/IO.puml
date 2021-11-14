@@ -1,0 +1,29 @@
+@startuml
+
+interface IO
+class FileReader
+class DBConnector
+Main *-- IO
+
+IO <|-- FileReader: implements
+IO <|-- DBConnector: implements
+
+Main : static IO io
+Main : static Board board
+Main : static ArrayList<Player> players
+Main : static Player currentPlayer
+Main : static final int MAX
+Main : static main(String[] args)
+Main : static void runLoop()
+Main : static takeTurn()
+Main : static printAccounts()
+Main : static saveGamedata()
+
+
+IO : ArrayList<Player> readGameData()
+IO : String[] readFieldData()
+IO : void saveGamedata()
+@enduml
+
+
+

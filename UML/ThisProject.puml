@@ -1,26 +1,42 @@
 @startuml
 abstract class Field
 abstract class Property
+interface IO
+class FileReader
+class DBConnector
+Main *-- IO
 Main "1" *-- "2...6" BankAccount : has
 Main "1" *-- "1" UI : has
+Main *-- Board : has
 Player *-- BankAccount : has
 Field <|-- Consequence : is-a
 Field <|-- Property : is-a
-Main *-- Board : has
+
 Board *-- Field : has
 Consequence <|-- Tax : is-a
 Consequence <|-- Start : is-a
 Property <|-- Plot : is-a
 Property <|-- Business : is-a
+Property <|-- Business : is-a
+IO <|-- FileReader: implements
+IO <|-- DBConnector: implements
 
-Main : static ArrayList<BankAccount> accounts
+
 Main : static UI ui
+Main : static IO io
+Main : static Board board
+Main : static ArrayList<Player> players
+Main : static Player currentPlayer
 Main : static final int MAX
+
 Main : static main(String[] args)
-Main : static readAccountData()
+Main : static runLoop()
+Main : static takeTurn()
 Main : static printAccounts()
 Main : static saveGamedata()
 Main : static doTurn()
+
+
 
 Board : ArrayList<Field> fields
 Board : Dice dice
@@ -62,6 +78,9 @@ Player : Player(String name, int balance)
 Player : handleMoney()
 Player : updatePosition()
 
+IO : readGameData()
+IO : readFieldData()
+IO : saveGamedata()
 @enduml
 
 
