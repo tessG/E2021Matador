@@ -1,1 +1,3 @@
-Select label from Field
+use Matador;
+Select * from Field;
+

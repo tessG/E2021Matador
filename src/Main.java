@@ -18,8 +18,7 @@ public class Main {
         //todo: Single responsibility: placer fil io i egen klasse
         //todo: sørg for at der kan læses fra fil eller database, uden negative konsekvenser når man skifter i mellem de to kilder
 
-
-        try {
+       try {
             readGameData();
         }catch(FileNotFoundException e){
             ui.createAccounts();
@@ -27,13 +26,21 @@ public class Main {
             System.out.println("file is empty");
             ui.createAccounts();
         }
+
         printAccounts();
+        DBConnector db = new DBConnector();
+        String [] data = db.readFieldData();
 
+        //todo: skriv kode der gør at man let kan skifte mellem den ene og den anden persistens-metode
+        // String [] data = fileReader.readFieldData();
 
-        String [] data = readFieldData();
+        //sender data til Board klassen, så den kan lave alle de forskellige felt instanser
         board = new Board(data);
         runLoop();
-        saveGameData();
+
+        // Vi gemmer ikke data ligenu, da saveGameData metoden ikke er refaktoreret til at gemme spillernes position og isNext værdi.
+        // Koden vil derfor fejle hvis vi får overskrevet data.txt
+        //  saveGameData();
     }
 
     private static void runLoop(){
@@ -106,7 +113,7 @@ public class Main {
 
     private static void saveGameData() {
         String gamedata = "";
-
+        gamedata="name, balance, position, isNext \n";
         for (Player a : players) {
             gamedata += a;
         }
