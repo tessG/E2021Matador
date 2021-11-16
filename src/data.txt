@@ -1,4 +1,4 @@
 name, balance, position, isNext
-Egon,30000,1,false
-Benny,30000,1,true
-Kjeld,30000,1,false
+Tess,30000,1,false
+Jesper,30000,1,true
+Kim,30000,1,false

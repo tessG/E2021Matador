@@ -1,46 +1,40 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 public class Main {
    static ArrayList<Player> players = new ArrayList();
    static int MAX = 6;
-   private static Board board;
-   private static UI ui= new UI();
-   public static Player currentPlayer;
+    private static Board board;
+    public static UI ui= new UI();
+    public static Player currentPlayer;
     private static int turnCounter = 0;
+    enum Datasource{
+        DATABASE,
+        CSVFILE
+    }
+    private static Datasource datapath = Datasource.CSVFILE;
 
     public static void main(String [] arg){
-        //todo: Single responsibility: placer fil io i egen klasse
+        //todo: Single responsibility: placer kode til fil-læsning og -skrivning i egen klasse
         //todo: sørg for at der kan læses fra fil eller database, uden negative konsekvenser når man skifter i mellem de to kilder
+        IO io;
 
-       try {
-            readGameData();
-        }catch(FileNotFoundException e){
-            ui.createAccounts();
-        }catch (NoSuchElementException e){
-            System.out.println("file is empty");
-            ui.createAccounts();
+        if(datapath==Datasource.CSVFILE) {
+            io = new FileReader();
+        }else {
+            io = new DBConnector();
         }
 
+        //FileReader fr = new FileReader();
+        players = io.readGameData();
         printAccounts();
-        DBConnector db = new DBConnector();
-        String [] data = db.readFieldData();
-
+        String [] data;
+        //DBConnector db = new DBConnector();
+        data = io.readFieldData();
         //todo: skriv kode der gør at man let kan skifte mellem den ene og den anden persistens-metode
-        // String [] data = fileReader.readFieldData();
-
-        //sender data til Board klassen, så den kan lave alle de forskellige felt instanser
-        board = new Board(data);
+         board = new Board(data);
         runLoop();
+        io.saveGameData(players);
 
-        // Vi gemmer ikke data ligenu, da saveGameData metoden ikke er refaktoreret til at gemme spillernes position og isNext værdi.
-        // Koden vil derfor fejle hvis vi får overskrevet data.txt
-        //  saveGameData();
     }
 
     private static void runLoop(){
@@ -51,7 +45,7 @@ public class Main {
                 turnCounter = 0;
             }
             currentPlayer = players.get(turnCounter);
-            System.out.println("Det er "+currentPlayer.getName()+"'s tur");
+          //  System.out.println("Det er "+currentPlayer.getName()+"'s tur");
             takeTurn();
             input = ui.getUserInput("Er alle klar til næste runde? Y/N: ");
             turnCounter++;
@@ -81,79 +75,9 @@ public class Main {
 
     }
 
-    public static String[] readFieldData() {
-        String[] data = new String[40];
-        File file = new File("src/fields.txt");
-        String s;
-        int i = 0;
-        try {
-            Scanner scan = new Scanner(file);
-            scan.nextLine();//ignorerer headeren
-
-            while(scan.hasNextLine()){
-                 s = scan.nextLine();
-                 data[i] = s;
-                 i++;
-            }
-
-        }catch(FileNotFoundException e){
-            System.out.println(e.getCause());
-        }
-        return data;
-    }
-
-    /**
-     *
-     * Denne metode gemmer sessionens tilstand,
-     * instantier en gamedata tekst-streng (String)
-     * loop igennem accounts, og for hver linie tilføj data i formen "ejer:balance" til strengen
-     * instantier FileWriter og kald dens write med den opbyggede streng som argument
-     *
-     */
-
-    private static void saveGameData() {
-        String gamedata = "";
-        gamedata="name, balance, position, isNext \n";
-        for (Player a : players) {
-            gamedata += a;
-        }
-
-        try {
-            FileWriter writer = new FileWriter("src/data.txt");
-            writer.write(gamedata);
-            writer.close();
-        }catch (IOException e){
-            System.out.println(e.getMessage());
-        }
-    }
-
     private static void printAccounts() {
         for(Player a: players){
             System.out.println(a);
-        }
-    }
-
-    /**
-     * Indlæser gamedata og danner spillerinstanser på baggrund af data
-     * objekterne gemmes herefter i denne klasses ArrayList<Players>
-     *
-     *   'throws FileNotFoundException' i metodesignaturen fordi vi hellere vil fange indlæsningsfejl oppe i main
-     *   - i de tilfælde kan vi i stedet igangsætte en dialog til manuel indtastning af spiller data
-     */
-    //todo: refactor sådan at metoden returnerer en arrayListe af spillere: ArrayList<Player>
-    // kald til metoden: players = io.readGameData()
-    public static void readGameData() throws FileNotFoundException, NoSuchElementException {
-        File file = new File("src/data.txt");
-        Scanner scan = null;
-        scan = new Scanner(file);
-        scan.nextLine();
-        while(scan.hasNextLine()){
-            String [] values = scan.nextLine().split(",");
-            int balance = Integer.parseInt(values[1]);
-            int position = Integer.parseInt(values[2]);
-            boolean isNext = Boolean.getBoolean(values[3]);
-            Player p = new Player(values[0], balance, position, isNext);
-            players.add(p);
         }
     }
 
